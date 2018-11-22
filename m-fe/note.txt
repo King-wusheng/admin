@@ -1,0 +1,115 @@
+页面布局：
+- swiper的高度随屏幕大小变化自动调整？
+
+ECMAScript：
+- ES6、ES7、ES8
+https://juejin.im/post/5b9cb3336fb9a05d290ee47e
+- 如何对嵌套的对象进行解构
+var user = {
+  id: 123,
+  name: 'hehe',
+  education: {
+    degree: 'Masters'
+  }
+};
+var {education: {degree}} = user;
+console.log(degree);
+
+前后端架构：
+- 正向代理与反向代理
+https://blog.csdn.net/zhanghanboke/article/details/77488894
+https://www.jianshu.com/p/208c02c9dd1d
+
+
+2018-10-09
+SPA: Single Page Application
+
+2018-10-10
+技术栈回顾
+一、gulp
+依赖：node.js, npm, yarn, webpack
+插件：gulp-webserver, gulp-sass(node-sass), gulp-watch, http-proxy-middleware, webpack-stream
+二、Yo
+依赖：sass
+三、handlebars
+依赖：JS
+四、ES6，ES7，ES8
+- 模块化
+- async/await
+- 属性简写
+五、json-server
+六、zepto
+七、自主编写路由
+八、RMVC+SPA
+
+gitlab:(和github相似)
+
+
+2018-10-11
+0、前端工程化
+- grunt
+- gulp
+- webpack
+
+1、Web-server http-server
+- gulp-webserver(开发环境的插件)
+- apache nginx iis weblogic
+
+2、生产环境的gulp配置
+- 版本号控制
+(1)gulp-rev: 根据JS,CSS代码生成随机字符串， 同时产生一个随机串的JSON
+(2)gulp-rev-collector: 根据rev生成manifest的JSON文件，去替换html的对应内容
+(3)gulp任务执行顺序：gulp-sequence gulp-run-sequence
+- 压缩（JS，CSS，HTML）
+(1) JS:webpack 4 开发环境配置来实现JS代码压缩
+(2) CSS: gulp-minify-css
+(3) HTML: gulp-minify-html
+
+3、梳理项目架构
+(1) 前端架构
+- 项目开发模式：RMVC（R: router, M: model, V: view, C: controller）
+- UI展示模式：SPA（single page application）+ MPA(multiply pages application)
+- 项目工程化：gulp + webpack(JS pack)
+  - gulp: dev + prod
+    - dev: webserver + sass + packjs + mock
+    - prod: sass + packjs + version + compress
+  - webpack:
+    - string-loader + bable-loader
+- 库、框架
+ - Yo(ui框架) + zepto + better-scroll + swiper
+- 路由
+ - 自己开发的
+- 模板引擎
+ - handlebars
+(2) 前后端开发架构
+- 前后端分离的架构 （Front-end + JSON + Back-end）
+
+(3) SPA + MPA 区别
+1）、SPA
+  - 优点：用户体验 perfect nice awesome，变量共享
+  - 缺点：不利于SEO优化 性能不好
+2）、MPA
+  - 优点：性能会好
+  - 缺点：用户体验差，变量不共享
+
+
+4、转化率
+用户浏览量（PV, UV）/订单量
+
+5、三端
+Android, iOS, H5
+
+6、UserAgent
+navigator.userAgent
+
+7、项目发布方式
+(1) 前后端不分离的发布方式
+npm install express-generator -g      or
+yarn global add express-generator
+
+http://www.expressjs.com.cn/
+
+(2) 前后端分离的发布方式
+配置host:
+- DNS解析流程：先到本地hosts里去找路由，找不到走公网
+- hostadmin工具

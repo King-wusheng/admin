@@ -1,0 +1,109 @@
+
+<div class="row">
+  <div class="col-md-6">
+    <!-- Custom Tabs -->
+    <div class="nav-tabs-custom">
+       
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab_1" data-toggle="tab" class="tab">全部</a></li>
+        <li><a href="#tab_2" data-toggle="tab" class="tab">服饰</a></li>
+        <li><a href="#tab_3" data-toggle="tab" class="tab">美食</a></li>
+        <li><a href="#tab_3" data-toggle="tab" class="tab">家电</a></li>
+        <li><a href="#tab_3" data-toggle="tab" class="tab">山地</a></li>
+        
+        <!-- <li class="{{ keywords=='全部'?active:'' }}"><a href="#tab_1" data-toggle="tab" class="tab">全部</a></li>
+        <li class="{{ keywords=='服饰'?active:'' }}"><a href="#tab_2" data-toggle="tab" class="tab">服饰</a></li>
+        <li class="{{ keywords=='美食'?active:'' }}"><a href="#tab_3" data-toggle="tab" class="tab">美食</a></li>
+        <li class="{{ keywords=='家电'?active:'' }}"><a href="#tab_3" data-toggle="tab" class="tab">家电</a></li>
+        <li class="{{ keywords=='山地'?active:'' }}"><a href="#tab_3" data-toggle="tab" class="tab">山地</a></li>
+          -->
+        <li class="pull-right"><a class="text-muted"><i class="fa fa-gear"></i></a></li>
+      </ul>
+   
+    </div>
+    <!-- nav-tabs-custom -->
+  </div>
+</div>
+
+
+<div class="box">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      <button id="addbtn" class="btn btn-block btn-success"><span class="fa fa-plus-circle"></span> 添加</button>
+    </h3>
+    <div class="box-tools">
+      <div class="input-group input-group-sm" style="width: 150px;">
+        <input type="text" id="keywords" value="" name="pos_search" class="form-control pull-right" placeholder="搜索">
+
+        <div class="input-group-btn">
+          <button type="button" id="possearch" class="btn btn-default"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table class="table table-bordered">
+      <tr>
+        <th style="width: 10px">#</th>
+        <th>商品Logo</th>
+        <th>商品类别</th>
+        <th>商品名称</th>
+        <th>商品价格</th>
+        <th>发布时间</th>
+        <th>商品库存</th>
+        <th style="width: 140px">操作</th>
+      </tr>
+      {{ each list }}
+      <tr>
+        <td>{{ $index + (~~pageSize * (~~pageNo - 1)) + 1 }}</td>
+        <td><img width="50" height="50" src="http://localhost:3000/uploads/{{ $value.companyLogo }}" alt=""></td>
+        <td>{{ $value.companyName }}</td>
+        <td>{{ $value.positionName }}
+        </td>
+        <td>{{ $value.city }}</td>
+        <td>{{ $value.createDate }}</td>
+        <td>{{ $value.salary }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary pos-update" posid="{{ $value._id }}" pageno="" keywords=""><span class="fa fa-edit"></span>
+            修改</button>
+          <button class="btn btn-sm btn-danger pos-remove" posid="{{ $value._id }}" pageno="" pagecount="" pagesize=""
+            keywords="" filename=""><span class="fa fa-remove"></span> 删除</button>
+        </td>
+      </tr>
+      {{ /each }}
+      {{ if list.length === 0 }}
+      <tr>
+        <td colspan="8"> 暂无数据. </td>
+      </tr>
+      {{ /if }}
+    </table>
+  </div>
+  {{if list.length > 0}}
+  <div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+      <li><a href="/#/position?pageNo={{pageNo > 1 ? pageNo - 1 : 1}}&keywords={{keywords}}">&laquo;</a></li>
+      {{ each pageArray }}
+      <li class="{{ ~~pageNo === $index + 1 ? 'active' : '' }}"><a href="/#/position?pageNo={{$index + 1}}&keywords={{keywords}}">{{ $index +
+          1 }}</a></li>
+      {{ /each }}
+      <li><a href="/#/position?pageNo={{pageNo < pageCount ? pageNo + 1 : pageCount}}&keywords={{keywords}}">&raquo;</a></li>
+    </ul>
+  </div>
+  {{/if}}
+</div>
+<!-- /.box -->
+<div class="remove_alert"> 
+    <div>请您再次确认是否删除该商品</div>
+    <div>
+      <button id="no">否</button>
+      <button id="yes">是</button>
+    </div>
+</div>
+<div class="position_bg">
+
+</div>
+
+
+
+
